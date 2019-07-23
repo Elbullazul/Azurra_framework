@@ -151,7 +151,8 @@ def get_children(target, source, widget):
 #        print(f"Parents for {target}")
 
     for line in imports:
-        print(line.replace(source, f'[{target}]').replace('/widgets/', ' '))
+        target = target.split('/')[-1]
+        print(line.replace(source, f'[{target}]').replace('/', '').replace('widgets', ' '))
 
     return count
 
