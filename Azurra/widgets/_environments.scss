@@ -15,25 +15,23 @@
 }
 
 @mixin tasklist_button() {
-  & {
-    color: $taskbar_fg_color;
-    background-color: $taskbar_bg_color;
-    border-radius: 0;
-    border: none;
+  color: $taskbar_fg_color;
+  background-color: $taskbar_bg_color;
+  border-radius: 0;
+  border: none;
 
-    &:hover {
-      border: none;
-      color: $taskbar_fg_color;
-      background-color: gtkshade($taskbar_bg_color, 1.1);
-    }
-    
-    &:active, &:checked {
-      color: $selected_fg_color;
-      border: none;
-      box-shadow: none;
-      background-image: none;
-      background-color: $selected_bg_color;
-    }
+  &:hover {
+    border: none;
+    color: $taskbar_fg_color;
+    background-color: gtkshade($taskbar_bg_color, 1.1);
+  }
+  
+  &:active, &:checked {
+    color: $selected_fg_color;
+    border: none;
+    box-shadow: none;
+    background-image: none;
+    background-color: $selected_bg_color;
   }
 }
 

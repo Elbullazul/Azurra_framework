@@ -1,24 +1,28 @@
 @mixin messagedialog() {
   messagedialog {
     .background.csd {
-	    border-radius: 0 0 $csd_radius $csd_radius;
+	    border-radius: $csd_radius $csd_radius 0 0;
 	    color: $fg_color;
       background-color: $bg_color;
     }
 
     decoration {
-      border-radius: $csd_radius;
+      border-radius: $csd_radius $csd_radius 0 0;
       box-shadow: 0 1px 2px gtkalpha($dark_shadow, 0.2);
     }
 
     .titlebar.horizontal {
+      border: none;
       background-color: $bg_color;
     }
 
     &.csd .dialog-action-area button {
+      margin: 0;
       padding: 10px;
       border-radius: 0;
       border-bottom-style: none;
+
+      -gtk-outline-radius: 0;
 
       &:last-child {
         border-right-width: 0;

@@ -2,6 +2,11 @@
   .view {
     color: $text_color;
     background-color: $base_color;
+    
+    &:backdrop {
+      color: $unfocused_text_color;
+      background-color: $unfocused_base_color;
+    }
 
     &:not(treeview) {
       border-radius: $view_radius;

@@ -1,51 +1,49 @@
 @mixin headerbar_buttons($bg, $fg, $br)
 {
-  & {
+  border-color: gtkshade($br, 1.05);
+  border-radius: $button_radius;
+  color: $fg;
+  background-color: gtkshade($bg, 1.05);
+
+  &:hover {
     border-color: gtkshade($br, 1.05);
-    border-radius: $button_radius;
     color: $fg;
     background-color: gtkshade($bg, 1.05);
 
-    &:hover {
-      border-color: gtkshade($br, 1.05);
-      color: $fg;
-      background-color: gtkshade($bg, 1.05);
-
-      &:backdrop {
-        border-color: $unfocused_borders;
-        background-color: $unfocused_bg_color;
-      }
-    }
-
-    &:active, &:checked {
-      border-color: gtkshade($selected_bg_color, 1.15);
-      color: $selected_fg_color;
-      background-color: gtkshade($selected_bg_color, 1.15);
-      
-      &:backdrop {
-        border-color: $unfocused_selected_bg_color;
-        color: $unfocused_selected_fg_color;
-        background-color: $unfocused_selected_bg_color;
-      }
-    }
-
-    &:disabled {
-      border-color: transparent;
-      color: gtkalpha($fg, 0.7);
-      background-color: transparent;
-      
-      &:backdrop {
-        border-color: gtkshade($unfocused_borders, 1.05);
-        color: $disabled_fg_color;
-        background-color: transparent;
-      }
-    }
-
     &:backdrop {
       border-color: $unfocused_borders;
-      color: $unfocused_fg_color;
       background-color: $unfocused_bg_color;
     }
+  }
+
+  &:active, &:checked {
+    border-color: gtkshade($selected_bg_color, 1.15);
+    color: $selected_fg_color;
+    background-color: gtkshade($selected_bg_color, 1.15);
+    
+    &:backdrop {
+      border-color: $unfocused_selected_bg_color;
+      color: $unfocused_selected_fg_color;
+      background-color: $unfocused_selected_bg_color;
+    }
+  }
+
+  &:disabled {
+    border-color: transparent;
+    color: gtkalpha($fg, 0.7);
+    background-color: transparent;
+    
+    &:backdrop {
+      border-color: gtkshade($unfocused_borders, 1.05);
+      color: $disabled_fg_color;
+      background-color: transparent;
+    }
+  }
+
+  &:backdrop {
+    border-color: $unfocused_borders;
+    color: $unfocused_fg_color;
+    background-color: $unfocused_bg_color;
   }
 }
 

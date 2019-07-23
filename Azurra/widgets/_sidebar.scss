@@ -47,7 +47,7 @@
     }
   }
 
-  frame, &.frame {
+  frame > border, .frame {
     border: none;
   }
   
@@ -80,16 +80,33 @@
     @include common_sidebar();
   }
   
-  stacksidebar row {
-    padding: 10px 4px;
+  stacksidebar {
+    &.sidebar {
+      &:dir(ltr) list,
+      &.left list,
+      &.left:dir(rtl) list {
+        border-right: 1px solid $borders;
+        border-left-style: none;
+      }
 
-    > label {
-      padding-left: 6px;
-      padding-right: 6px;
+      &:dir(rtl) list,
+      &.right list {
+        border-left: 1px solid $borders;
+        border-right-style: none;
+      }
     }
 
-    &.needs-attention > label {
-      background-size: 6px 6px, 0 0;
+    row {
+      padding: 10px 4px;
+      
+      > label {
+        padding-left: 6px;
+        padding-right: 6px;
+      }
+
+      &.needs-attention > label {
+        background-size: 6px 6px, 0 0;
+      }
     }
   }
 

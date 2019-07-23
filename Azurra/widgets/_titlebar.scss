@@ -22,6 +22,8 @@
         border: none;
         color: transparent;
         background-color: transparent;
+        
+        background-position: center center;
         -gtk-icon-shadow: none;
       }
       
@@ -83,7 +85,7 @@
     min-height: 30px;
     color: $titlebar_fg_color;
     background-color: $titlebar_bg_color;
-    border-bottom: 1px solid gtkshade($titlebar_bg_color, 0.9);
+    border-bottom: 1px solid $titlebar_bg_color;
     
     headerbar { border-bottom: none; }    // no inset borders
 

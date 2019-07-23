@@ -166,7 +166,6 @@ button:link, button:visited {
   &:disabled {
     background-color: gtkshade($base_color, 0.9);
   }
-
 }
 
 @include calendar();

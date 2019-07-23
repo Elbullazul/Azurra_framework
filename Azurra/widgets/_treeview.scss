@@ -6,6 +6,11 @@
       &:selected, &:selected:focus {
         color: $selected_fg_color;
         background-color: $selected_bg_color;
+        
+        &:backdrop {
+          color: $unfocused_selected_fg_color;
+          background-color: $unfocused_selected_bg_color;
+        }
       }
     
       &:drop(active) {
