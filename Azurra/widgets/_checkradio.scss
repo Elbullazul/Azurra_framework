@@ -70,6 +70,9 @@
   }
   
   check, .check {
+    min-height: $check_size;
+    min-width: $check_size;
+
     @include check();
     
     row:selected & {
@@ -78,6 +81,9 @@
   }
   
   radio, .radio {
+    min-height: $check_size;
+    min-width: $check_size;
+
     @include radio();
     
     row:selected & {
@@ -86,11 +92,6 @@
   }
   
   menuitem, .menuitem, menuitem.button.flat, .menuitem.button.flat, modelbutton.flat, menuitem.button.flat {
-    check, radio {
-      min-height: 16px;
-      min-width: 16px;
-    }
-    
     check {
       @include check();
       

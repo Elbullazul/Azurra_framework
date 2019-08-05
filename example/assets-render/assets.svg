@@ -62,34 +62,6 @@
          stop-color="#cfd6e6"
          id="stop30" />
     </linearGradient>
-    <linearGradient
-       id="dark-bg-color">
-      <stop
-         offset="1"
-         stop-color="#2d323d"
-         id="stop24" />
-    </linearGradient>
-    <linearGradient
-       id="dark-highlight-bg-color">
-      <stop
-         offset="1"
-         stop-color="#4285F4"
-         id="stop1172" />
-    </linearGradient>
-    <linearGradient
-       id="dark-highlight-fg-color">
-      <stop
-         offset="1"
-         stop-color="#2b303b"
-         id="stop27" />
-    </linearGradient>
-    <linearGradient
-       id="dark-borders">
-      <stop
-         offset="1"
-         stop-color="#262934"
-         id="stop33" />
-    </linearGradient>
     <!-- END COLORS -->
     <linearGradient
        inkscape:collect="always"

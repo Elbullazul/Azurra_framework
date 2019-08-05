@@ -262,6 +262,8 @@ check, radio, check:disabled, radio:disabled {
   background-color: transparent; }
 
 check, .check {
+  min-height: 16px;
+  min-width: 16px;
   -gtk-icon-source: -gtk-scaled(url("assets/checkbox-unchecked.png"), url("assets/checkbox-unchecked-@2.png")); }
   check:backdrop, .check:backdrop {
     -gtk-icon-source: -gtk-scaled(url("assets/checkbox-unchecked-unfocused.png"), url("assets/checkbox-unchecked-unfocused-@2.png")); }
@@ -311,6 +313,8 @@ check, .check {
           -gtk-icon-source: -gtk-scaled(url("assets/checkbox-mixed-insensitive-unfocused-selected.png"), url("assets/checkbox-mixed-insensitive-unfocused-selected-@2.png")); }
 
 radio, .radio {
+  min-height: 16px;
+  min-width: 16px;
   -gtk-icon-source: -gtk-scaled(url("assets/radio-unchecked.png"), url("assets/radio-unchecked-@2.png")); }
   radio:backdrop, .radio:backdrop {
     -gtk-icon-source: -gtk-scaled(url("assets/radio-unchecked-unfocused.png"), url("assets/radio-unchecked-unfocused-@2.png")); }
@@ -359,9 +363,6 @@ radio, .radio {
         row:selected radio:indeterminate:disabled:backdrop, row:selected .radio:indeterminate:disabled:backdrop {
           -gtk-icon-source: -gtk-scaled(url("assets/radio-mixed-insensitive-unfocused-selected.png"), url("assets/radio-mixed-insensitive-unfocused-selected-@2.png")); }
 
-menuitem check, menuitem radio, .menuitem check, .menuitem radio, menuitem.button.flat check, menuitem.button.flat radio, .menuitem.button.flat check, .menuitem.button.flat radio, modelbutton.flat check, modelbutton.flat radio, menuitem.button.flat check, menuitem.button.flat radio {
-  min-height: 16px;
-  min-width: 16px; }
 menuitem check, .menuitem check, menuitem.button.flat check, .menuitem.button.flat check, modelbutton.flat check, menuitem.button.flat check {
   -gtk-icon-source: -gtk-scaled(url("assets/checkbox-unchecked.png"), url("assets/checkbox-unchecked-@2.png")); }
   menuitem check:backdrop, .menuitem check:backdrop, menuitem.button.flat check:backdrop, .menuitem.button.flat check:backdrop, modelbutton.flat check:backdrop, menuitem.button.flat check:backdrop {
