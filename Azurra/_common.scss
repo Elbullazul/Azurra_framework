@@ -362,6 +362,8 @@ colorchooser {
 
 @include linked_widgets();
 
+@include linked_styles();
+
 @include tooltip();
 
 @include textview();
@@ -390,9 +392,9 @@ colorchooser {
 
 @include decoration();
 
-@include messagedialog();
-
 @include titlebar();
+
+@include messagedialog();
 
 // desktop theme rules
 @include desktop_icons();

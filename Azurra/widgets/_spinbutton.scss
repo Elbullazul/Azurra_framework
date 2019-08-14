@@ -1,46 +1,53 @@
 @mixin spinbutton() {
   spinbutton {
-    &:not(.vertical) selection, &:not(.vertical) selection:focus {
-      color: $selected_fg_color;
-      background-color: $selected_bg_color;
-    }
-    
-    button, entry {
-      &:disabled {
-        color: $disabled_fg_color;
-        
-        &:backdrop {
-          color: $unfocused_disabled_fg_color;
-        }
-      }
-    }
-
     &.horizontal {
-      entry {
-        border-top-right-radius: 0;
-        border-bottom-right-radius: 0;
-        padding: 7px 15px;
+      border: 1px solid $borders;
+      border-radius: $entry_radius;
+      background-color: $base_color;
+      
+      &:disabled {
+        border-color: $unfocused_borders;
+        color: $disabled_fg_color;
+        background-color: $disabled_base_color;
+
+        &:backdrop {
+          border-color: $unfocused_borders;
+          color: $unfocused_disabled_fg_color;
+          background-color: $unfocused_disabled_base_color;
+        }
       }
       
-      button {        
-        &.down {
-          border-right-width: 0;
-          border-left-width: 0;
-          border-radius: 0;
-        }
+      &:backdrop {
+        background-color: $unfocused_base_color;
+        border-color: $unfocused_borders;
+      }
 
-        &.up {
-          border-top-left-radius: 0;
-          border-bottom-left-radius: 0;
-        }
+      &:focus { border-color: $selected_bg_color; }
+    
+      entry {
+        padding: 7px 15px;
+        border: none;
+        background: none;
+        border-radius: $entry_radius 0 0 $entry_radius;
+        
+        &:focus { box-shadow: none; }
+        
+        &:disabled { background: none; }
+      }
+      
+      button {
+        border: none;
+        border-radius: 0;
+        background: none;
+        box-shadow: -1px 0 $borders;
+        
+        &:disabled, &:backdrop { box-shadow: -1px 0 $unfocused_borders; background: none; }
+        &.up { border-radius: 0 $entry_radius $entry_radius 0; }
       }
     }
 
     &.vertical {
-      entry {
-        border-radius: 0;
-      }
-
+      entry { border-radius: 0; }
       button {
         &.up {
           border-bottom-left-radius: 0;

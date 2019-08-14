@@ -145,17 +145,15 @@
         }
       }
 
-      &.sidebar-new-bookmark-row {
-        color: $selected_bg_color;
+      &.sidebar-new-bookmark-row { color: $selected_bg_color; }
         
-        &:drop(active):not(:disabled) {
-          color: $selected_bg_color;
-          box-shadow: inset 0 1px $selected_bg_color, inset 0 -1px $selected_bg_color;
-          
-          &:selected {
-            color: $selected_fg_color;
-            background-color: $selected_bg_color;
-          }
+      &:drop(active):not(:disabled) {
+        color: $selected_bg_color;
+        box-shadow: inset 0 1px $selected_bg_color, inset 0 -1px $selected_bg_color;
+        
+        &:selected {
+          color: $selected_fg_color;
+          background-color: $selected_bg_color;
         }
       }
     }

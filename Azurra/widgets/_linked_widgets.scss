@@ -1,179 +1,112 @@
+// horizontal
+@mixin linked_first($radius) {
+  border-left-width: 1px;
+  border-top-left-radius: $radius;
+  border-bottom-left-radius: $radius;
+}
+
+@mixin linked_middle($radius) {
+  border-radius: 0;
+  border-left-width: 0;
+}
+
+@mixin linked_last($radius) {
+  border-left-width: 0;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  border-top-right-radius: $radius;
+  border-bottom-right-radius: $radius;
+}
+
+// vertical
+@mixin linked_v_first($radius) {
+  border-top-width: 1px;
+  border-top-left-radius: $radius;
+  border-top-right-radius: $radius;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+@mixin linked_v_middle($radius) {
+  border-left-width: 1px;
+  border-top-width: 0;
+  border-radius: 0;
+}
+
+@mixin linked_v_last($radius) {
+  border-top-width: 0;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  border-bottom-left-radius: $radius;
+  border-bottom-right-radius: $radius;
+}
+
+// only-child
+@mixin linked_only($radius) {
+  border-width: 1px;
+  border-radius: $radius;
+}
+
 @mixin linked_widgets() {
-  .linked, .inline-toolbar .linked, .primary-toolbar .linked {
-    button, .raised button {
-      border-radius: 0;
-      border-left-width: 0;
+  .linked, .primary-toolbar .linked {
+    button, .raised button { @include linked_middle($button_radius);
+      &:first-child { @include linked_first($button_radius); }
+      &:last-child { @include linked_last($button_radius); }
+      &:only-child { @include linked_only($button_radius); }
+    }
 
-      &:first-child {
-        border-left-width: 1px;
-        border-top-left-radius: $button_radius;
-        border-bottom-left-radius: $button_radius;
-      }
+    entry { @include linked_middle($entry_radius);
+      &:first-child { @include linked_first($entry_radius); }
+      &:last-child { @include linked_last($entry_radius); }
+      &:only-child { @include linked_only($entry_radius); }
+    }
 
-      &:last-child {
-        border-left-width: 0;
-        border-top-left-radius: 0;
-        border-bottom-left-radius: 0;
-        border-top-right-radius: $button_radius;
-        border-bottom-right-radius: $button_radius;
-      }
-
-      &:only-child {
-        border-width: 1px;
-        border-radius: $button_radius;
-      }
+    combobox { box.linked button { @include linked_middle($button_radius); }
+      &:first-child box.linked button { @include linked_first($button_radius); }
+      &:last-child box.linked button { @include linked_last($button_radius); }
+      &:only-child box.linked button { @include linked_only($button_radius); }
     }
     
-    entry {
-      border-radius: 0;
-      border-left-width: 0;
-
-      &:first-child {
-        border-left-width: 1px;
-        border-top-left-radius: $entry_radius;
-        border-bottom-left-radius: $entry_radius;
+    spinbutton { @include linked_middle($button_radius);
+      &:first-child { @include linked_first($button_radius); }
+      &:last-child { @include linked_last($button_radius); }
+      &:only-child { @include linked_only($button_radius); }
+    }
+    
+    &.vertical {
+      button { @include linked_v_middle($button_radius);
+        &:first-child { @include linked_v_first($button_radius); }
+        &:last-child { @include linked_v_last($button_radius); }
+        &:only-child { @include linked_only($button_radius); }
       }
 
-      &:last-child {
-        border-left-width: 0;
-        border-top-left-radius: 0;
-        border-bottom-left-radius: 0;
-        border-top-right-radius: $entry_radius;
-        border-bottom-right-radius: $entry_radius;
+      entry { @include linked_v_middle($entry_radius);
+        &:first-child { @include linked_v_first($entry_radius); }
+        &:last-child { @include linked_v_last($entry_radius); }
+        &:only-child { @include linked_only($entry_radius); }
       }
 
-      &:only-child {
-        border-width: 1px;
-        border-radius: $entry_radius;
+      combobox { box.linked button { @include linked_v_middle($button_radius); }
+        &:first-child box.linked button { @include linked_v_first($button_radius); }
+        &:last-child box.linked button { @include linked_v_last($button_radius); }
+        &:only-child box.linked button { @include linked_only($button_radius); }
       }
-      
-      &:focus, &:last-child:focus {
-        box-shadow: -1px 0 $selected_bg_color;
-      }
+
+      spinbutton { @include linked_v_middle($button_radius);
+        &:first-child { @include linked_v_first($button_radius); }
+        &:last-child { @include linked_v_last($button_radius); }
+        &:only-child { @include linked_only($button_radius); }
         
-      &:first-child:focus {
-        box-shadow: none;
-      }
-    }
-
-    combobox {
-      box.linked button {
-        border-radius: 0;
-        border-left-width: 0;
-      }
-
-      &:first-child box.linked button {
-        border-left-width: 1px;
-        border-top-left-radius: $button_radius;
-        border-bottom-left-radius: $button_radius;
-      }
-
-      &:last-child box.linked button {
-        border-left-width: 0;
-        border-top-left-radius: 0;
-        border-bottom-left-radius: 0;
-        border-top-right-radius: $button_radius;
-        border-bottom-right-radius: $button_radius;
-      }
-
-      &:only-child box.linked button {
-        border-width: 1px;
-        border-radius: $button_radius;
+        button:first-child, button:last-child { border-radius: 0; }
       }
     }
   }
   
-  .vertical.linked {
-    button {
-      border-left-width: 1px;
-      border-top-width: 0;
-      border-radius: 0;
-
-      &:first-child {
-        border-top-width: 1px;
-        border-top-left-radius: $button_radius;
-        border-top-right-radius: $button_radius;
-        border-bottom-left-radius: 0;
-        border-bottom-right-radius: 0;
-      }
-
-      &:last-child {
-        border-top-width: 0;
-        border-top-left-radius: 0;
-        border-top-right-radius: 0;
-        border-bottom-left-radius: $button_radius;
-        border-bottom-right-radius: $button_radius;
-      }
-
-      &:only-child {
-        border-top-width: 1px;
-      }
-    }
-    
-    entry {
-      border-left-width: 1px;
-      border-top-width: 0;
-      border-radius: 0;
-
-      &:first-child {
-        border-top-width: 1px;
-        border-top-left-radius: $entry_radius;
-        border-top-right-radius: $entry_radius;
-        border-bottom-left-radius: 0;
-        border-bottom-right-radius: 0;
-      }
-
-      &:last-child {
-        border-top-width: 0;
-        border-top-left-radius: 0;
-        border-top-right-radius: 0;
-        border-bottom-left-radius: $entry_radius;
-        border-bottom-right-radius: $entry_radius;
-      }
-
-      &:only-child {
-        border-top-width: 1px;
-      }
-      
-      &:focus, &:last-child:focus {
-        box-shadow: 0 -1px $selected_bg_color;
-      }
-
-      &:first-child:focus {
-        box-shadow: none;
-      }
-    }
-
-    combobox {
-      box.linked button {
-        border-left-width: 1px;
-        border-top-width: 0;
-        border-radius: 0;
-      }
-
-      &:first-child box.linked button {
-        border-top-width: 1px;
-        border-top-left-radius: $button_radius;
-        border-top-right-radius: $button_radius;
-        border-bottom-left-radius: 0;
-        border-bottom-right-radius: 0;
-      }
-
-      &:last-child box.linked button {
-        border-top-width: 0;
-        border-top-left-radius: 0;
-        border-top-right-radius: 0;
-        border-bottom-left-radius: $button_radius;
-        border-bottom-right-radius: $button_radius;
-      }
-
-      &:only-child box.linked button {
-        border-top-width: 1px;
-      }
-    }
-  }
-  
-  stackswitcher button.text-button {
-    min-width: 80px;
+  // inline toolbar is a bit different
+  toolbar.inline-toolbar toolbutton, toolbar.inline-toolbar toolbutton:backdrop {
+    > button.flat { @include linked_middle($button_radius); }
+    &:first-child > button.flat { @include linked_first($button_radius); }
+    &:last-child > button.flat { @include linked_last($button_radius); }
+    &:only-child > button.flat { @include linked_only($button_radius); }
   }
 }

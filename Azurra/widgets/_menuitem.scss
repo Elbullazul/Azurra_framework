@@ -50,7 +50,7 @@
       }
 
       &:disabled {
-        color: $disabled_fg_color;
+        color: gtkmix($menu_fg_color, $menu_bg_color, 0.5);
       }
     }
   }

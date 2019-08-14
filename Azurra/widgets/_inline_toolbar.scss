@@ -1,7 +1,5 @@
 @mixin inline_toolbar() {
-  .inline-toolbar toolbar {
-    -GtkToolbar-button-relief: normal;
-
+  .inline-toolbar {
     padding: 1px;
     border-width: 1px;
     border-style: solid;
@@ -9,12 +7,12 @@
     border-radius: 0;
     background-color: $toolbar_bg_color;
 
-    &:last-child {
-      border-width: 0 1px 1px 1px;
-      border-radius: 0;
+    &:backdrop {
+      border-color: $unfocused_borders;
+      background-color: $unfocused_bg_color;
     }
 
-    button {
+    toolbutton > button {
       @include normal_buttons($toolbar_bg_color, $toolbar_fg_color, $borders);
     }
   } 

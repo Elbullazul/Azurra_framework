@@ -67,8 +67,16 @@
       background-color: transparent;
     }
 
-    .tiled &, .tiled &:backdrop, .maximized &, .maximized &:backdrop {
-      border-radius: 0;
+    .tiled &,
+    .tiled-top &,
+    .tiled-right &,
+    .tiled-bottom &,
+    .tiled-left &,
+    .maximized &,
+    .fullscreen & {
+      &:backdrop, & {
+        border-radius: 0;
+      }
     }
 
     .title {

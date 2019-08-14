@@ -8,11 +8,6 @@
       background-color: $unfocused_base_color;
     }
 
-    &:not(treeview) {
-      border-radius: $view_radius;
-      -gtk-outline-radius: $view_radius;
-    }
-
     &:disabled {
       color: $disabled_fg_color;
       background-color: $disabled_bg_color;
@@ -34,6 +29,9 @@
           color: $unfocused_selected_fg_color;
           background-color: $unfocused_selected_bg_color;
         }
+        
+        border-radius: $view_radius;
+        -gtk-outline-radius: $view_radius;
       }
     }
   }

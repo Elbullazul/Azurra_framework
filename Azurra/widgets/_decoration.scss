@@ -9,13 +9,19 @@
       box-shadow: 0 8px 8px 0 transparent, 0 5px 5px 0 gtkalpha($wm_shadow, 0.2), 0 0 0 1px $borders;
     }
 
-    .fullscreen &, .tiled & {
-      border-radius: 0;
-    }
+    .maximized &,
+    .fullscreen &,
+    .tiled &,
+    .tiled-top &,
+    .tiled-right &,
+    .tiled-bottom &,
+    .tiled-left & { border-radius: 0; }
 
-    .popup & {
+    .popup & { box-shadow: none; }
+
+    .csd.popup & {
+      border-radius: $menu_radius;
       box-shadow: 0 0 0 1px gtkalpha($wm_shadow, 0.1);
-      border-radius: 0;
     }
 
     .ssd & {

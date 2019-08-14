@@ -4,6 +4,7 @@
     
     &.view {
       &:selected, &:selected:focus {
+        border-radius: 0;
         color: $selected_fg_color;
         background-color: $selected_bg_color;
         

@@ -1,0 +1,23 @@
+@mixin linked_styles() {
+  .linked {
+    entry {
+      &:focus, &:last-child:focus { box-shadow: -1px 0 $selected_bg_color; }
+      &:only-child:focus, &:first-child:focus { box-shadow: none; }
+    }
+    
+    &.vertical {
+      entry {
+        &:focus, &:last-child:focus { box-shadow: 0 -1px $selected_bg_color; }
+        &:only-child:focus, &:first-child:focus { box-shadow: none; }
+      }
+
+      // restore spinbutton behaviour
+      spinbutton {
+        entry:focus { box-shadow: none; }
+      }
+    }
+  }
+
+  // only stretch text buttons  
+  stackswitcher button.text-button { min-width: 80px; }
+}

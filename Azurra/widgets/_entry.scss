@@ -30,10 +30,6 @@
       }
     }
 
-    &.read-only {
-      background-color: gtkmix($bg_color, $disabled_bg_color, 0.1);
-    }
-
     &:backdrop {
       color: $unfocused_fg_color;
       background-color: $unfocused_base_color;
