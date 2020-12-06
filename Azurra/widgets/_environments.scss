@@ -3,13 +3,28 @@
     color: $desktop_item_fg;
     text-shadow: 1px 1px $desktop_item_text_shadow;
 
-    &:active {
-      color: $desktop_item_fg;
-    }
+    &:active { color: $desktop_item_fg; }
 
     &:selected {
       color: $desktop_item_selected_fg;
       text-shadow: none;
+    }
+  }
+  
+  XfdesktopIconView {
+    .view {
+      border-radius: $view_radius;
+      color: $desktop_item_fg;
+      background-color: transparent;
+      text-shadow: 1px 1px $desktop_item_text_shadow;
+     
+      &:active { color: $desktop_item_fg; }
+    }
+    
+    &:active {
+      color: $desktop_item_selected_fg;
+      text-shadow: none;
+      background-color: $selected_bg_color;
     }
   }
 }
@@ -35,9 +50,7 @@
   }
 }
 
-@mixin panel_button() {
-  @include tasklist_button();
-}
+@mixin panel_button() { @include tasklist_button(); }
 
 @mixin gnome_flashback() {
   panel-toplevel.background {
@@ -46,21 +59,13 @@
       color: $taskbar_fg_color;
     }
 
-    menubar, #PanelApplet label, #PanelApplet image {
-      color: $taskbar_fg_color;
-    }
+    menubar, #PanelApplet label, #PanelApplet image { color: $taskbar_fg_color; }
 
-    menubar > menuitem, menubar > menuitem label:backdrop {
-      color: $taskbar_fg_color;
-    }
+    menubar > menuitem, menubar > menuitem label:backdrop { color: $taskbar_fg_color; }
 
-    menubar > menuitem:hover, menubar > menuitem:hover label:backdrop {
-      color: $selected_fg_color;
-    }
+    menubar > menuitem:hover, menubar > menuitem:hover label:backdrop { color: $selected_fg_color; }
 
-    button {
-      @include panel_button();
-    }
+    button { @include panel_button(); }
   }
 
   #tasklist-button {
@@ -69,13 +74,8 @@
     label {
       color: gtkalpha($taskbar_fg_color, 0.7);
 
-      &:hover {
-        color: gtkalpha($taskbar_fg_color, 0.7);
-      }
-
-      &:checked {
-        color: $taskbar_fg_color;
-      }
+      &:hover { color: gtkalpha($taskbar_fg_color, 0.7); }
+      &:checked { color: $taskbar_fg_color; }
     }
   }
 
@@ -89,13 +89,9 @@
   .xfce4-panel.panel {
     background-color: $taskbar_bg_color;
 
-    button.flat, button.sidebar-button {
-      @include panel_button();
-    }
+    button.flat, button.sidebar-button { @include panel_button(); }
     
-    .tasklist button {
-      @include tasklist_button();
-    }
+    .tasklist button { @include tasklist_button(); }
   }
   
   #XfceNotifyWindow {
@@ -105,16 +101,18 @@
       border-radius: $roundness;
       border: none;
       
-      label {
-        &#summary {
-          font-weight: bold;
-        }
-      }
+      label #summary { font-weight: bold; }
       
-      button {
-        @include normal_buttons($bg_color, $fg_color, $borders);
-      }
+      button { @include normal_buttons($bg_color, $fg_color, $borders); }
     }
+  }
+  
+  // workspace switcher
+  wnck-pager {
+    background-color: $taskbar_bg_color;
+    
+    &:hover { background-color: $selected_bg_color; }
+    &:selected { background-color: gtkshade($selected_bg_color, 0.88); }
   }
 }
 
@@ -127,10 +125,6 @@
   .mate-panel-menu-bar {
     color: $taskbar_fg_color;
     background-color: $taskbar_bg_color;
-
-    button, button.flat {
-      background-color: transparent;
-    }
 
     &, .menubar { background-color: $taskbar_bg_color; }
 
@@ -158,13 +152,11 @@
       &:disabled { color: $disabled_fg_color; }
     }
 
-    .button:not(#tasklist-button) { 
-      @include panel_button();
-    }
+    button, button.flat { background-color: transparent; }
 
-    #tasklist-button {
-      @include tasklist_button();
-    }
+    > .button:not(#tasklist-button) { @include panel_button(); }
+
+    #tasklist-button { @include tasklist_button(); label { color: $selected_fg_color; } }
 
     PanelSeparator {
       color: gtkshade($taskbar_bg_color, 0.7);
@@ -172,13 +164,9 @@
       padding-bottom: 4px;
     }
 
-    NaTrayApplet {
-      -NaTrayApplet-icon-padding: 2;
-    }
+    NaTrayApplet { -NaTrayApplet-icon-padding: 2; }
     
-    #PanelApplet label {
-      color: $taskbar_fg_color;
-    }
+    #PanelApplet label { color: $taskbar_fg_color; }
 
     .caja-desktop, .caja-navigation-window .view {
       &.entry {
@@ -224,6 +212,9 @@
         background-color: $selected_bg_color;
       }
     }
+    
+    // TODO: implement eventually
+    .nemo-inactive-pane .view { }
   }
 }
 
@@ -263,9 +254,7 @@
     .left, .right, &.bottom {
       background-color: $titlebar_bg_color;
 
-      &:backdrop {
-        background-color: $titlebar_bg_color;
-      }
+      &:backdrop { background-color: $titlebar_bg_color; }
     }
 
     // new menubar function in unity 7.5
@@ -293,9 +282,7 @@
   }
 
   @keyframes playbackmenuitem_spinner {
-    to {
-      -gtk-icon-transform: rotate(1turn);
-    }
+    to { -gtk-icon-transform: rotate(1turn); }
   }
 
   .menu IdoPlaybackMenuItem.menuitem:active {

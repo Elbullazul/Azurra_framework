@@ -45,67 +45,26 @@
     outline-offset: 0;
   }
 
-  checkbutton {
-    padding: 4px;
-    
-    &:hover, &:active:hover, &:selected, &:focus {
-      padding: 4px;
-      border-style: none;
-      background-color: transparent;
-    }
-  }
-  
-  view.content-view check, .content-view.view check {
-    background-color: transparent;
-    
-    &:hover, &:active, &:disabled, &:selected {
-      background-color: transparent;
-    }
-  }
-
-  check, radio, check:disabled, radio:disabled {
+  check, radio {
     margin: 4px;
-    border-style: none;
-    background-color: transparent;
+    min-height: $check_size;
+    min-width: $check_size;    
   }
   
-  check, .check {
-    min-height: $check_size;
-    min-width: $check_size;
-
-    @include check();
-    
-    row:selected & {
-      @include check("-selected");
-    }
+  check, .check { @include check();
+    row:selected & { @include check("-selected"); }
   }
   
-  radio, .radio {
-    min-height: $check_size;
-    min-width: $check_size;
-
-    @include radio();
-    
-    row:selected & {
-      @include radio("-selected");
-    }
+  radio, .radio { @include radio();
+    row:selected & { @include radio("-selected"); }
   }
   
   menuitem, .menuitem, menuitem.button.flat, .menuitem.button.flat, modelbutton.flat, menuitem.button.flat {
-    check {
-      @include check();
-      
-      &:hover {
-        @include check("-selected");
-      }
+    check { @include check();
+      &:hover { @include check("-selected"); }
     }
-    
-    radio {
-      @include radio();
-      
-      &:hover {
-        @include radio("-selected");
-      }
+    radio { @include radio();
+      &:hover { @include radio("-selected"); }
     }
   }
 }

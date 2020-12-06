@@ -48,34 +48,41 @@
 }
 
 @mixin headerbar() {
-  headerbar, headerbar:not(.titlebar) {
+  headerbar {
     padding: 4px 8px;
-    border-width: 0;
-    border-style: solid;
-    border-color: gtkmix($borders, $headerbar_bg_color, 0.5);
-    border-bottom-width: 1px;
-    color: $headerbar_fg_color;
-    background-color: $headerbar_bg_color;
+    min-height: 30px;
+    color: $titlebar_fg_color;
+    background-color: $titlebar_bg_color;
+    border-bottom: 1px solid $titlebar_bg_color;
 
     &:backdrop {
-      border-color: $unfocused_borders;
       color: $unfocused_fg_color;
+      border-bottom-color: $unfocused_borders;
       background-color: $unfocused_bg_color;
     }
 
-    .titlebar &, .titlebar &:backdrop {
-      background-color: transparent;
+    .tiled &, .tiled &:backdrop,
+    .maximized &, .maximized &:backdrop {
+      border-radius: 0;
+    }
+    
+    // Fixes split headerbars
+    separator:first-child + &,
+    &:first-child {
+      &, &:backdrop {
+        border-top-left-radius: $csd_radius;
+
+        .maximized &,
+        .tiled & { border-radius: 0; }
+      }
     }
 
-    .tiled &,
-    .tiled-top &,
-    .tiled-right &,
-    .tiled-bottom &,
-    .tiled-left &,
-    .maximized &,
-    .fullscreen & {
-      &:backdrop, & {
-        border-radius: 0;
+    &:last-child {
+      &, &:backdrop {
+        border-top-right-radius: $csd_radius;
+
+        .maximized &,
+        .tiled & { border-radius: 0; }
       }
     }
 
@@ -96,15 +103,48 @@
       @include headerbar_buttons($headerbar_bg_color, $headerbar_fg_color, $headerbar_bg_color);
     }
     
-    switch {
-      &:checked {
-        border-color: gtkshade($selected_bg_color, 1.15);
-        background-color: gtkshade($selected_bg_color, 1.15);  
-      }
+    switch:checked {
+      border-color: gtkshade($selected_bg_color, 1.15);
+      background-color: gtkshade($selected_bg_color, 1.15);
     }
 
-    entry {
-      padding: 4px 8px;
+    entry { padding: 4px 8px; }
+    &.titlebar, .titlebar & { border-radius: $csd_radius $csd_radius 0px 0px; }
+
+    .titlebutton {
+      &.close, &.maximize, &.minimize, &:not(separator) {
+        padding: 2px 2px;
+        border: none;
+        color: transparent;
+        background-color: transparent;
+        
+        background-position: center center;
+        -gtk-icon-shadow: none;
+      }
+      
+      &.close {
+        background: url('assets/close-normal.png') 100% 100%;
+
+        &:hover { background: url('assets/close-hover.png') 100% 100%; }
+        &:active { background: url('assets/close-active.png') 100% 100%; }
+        &:backdrop { background: url('assets/close-backdrop.png') 100% 100%; }
+      }
+
+      &.minimize {
+        background: url('assets/minimize-normal.png') 100% 100%;
+
+        &:hover { background: url('assets/minimize-hover.png') 100% 100%; }
+        &:active { background: url('assets/minimize-active.png') 100% 100%; }
+        &:backdrop { background: url('assets/minimize-backdrop.png') 100% 100%; }
+      }
+
+      &.maximize {
+        background: url('assets/maximize-normal.png') 100% 100%;
+
+        &:hover { background: url('assets/maximize-hover.png') 100% 100%; }
+        &:active { background: url('assets/maximize-active.png') 100% 100%; }
+        &:backdrop { background: url('assets/maximize-backdrop.png') 100% 100%; }
+      }
     }
   }
 }

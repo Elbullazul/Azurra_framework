@@ -9,13 +9,9 @@
     background-color: $base_color;
   }
 
-  .caja-location-entry {
-    padding: 3px 5px;
-  }
+  .caja-location-entry { padding: 3px 5px; }
 
-  scrolledwindow viewport.frame {
-    border: none;
-  }
+  scrolledwindow.frame, scrolledwindow viewport.frame { border: none; }
 
   arrow, combobox arrow {
     color: gtkalpha(currentColor, 0.75);
@@ -29,9 +25,7 @@
     font: initial;
   }
 
-  .monospace {
-    font-family: Monospace;
-  }
+  .monospace { font-family: Monospace; }
 
   .gedit-search-entry-occurrences-tag {
     color: gtkalpha(currentColor, 0.7);
