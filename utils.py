@@ -1,9 +1,5 @@
 #!/usr/bin/python3
 
-# Azurra Utils, a management script to create, edit and manage Azurra-based themes
-# Author: Christian Medel <cmedelahumada@gmail.com>
-# This is the third re-write of these tools
-
 import os, argparse
 
 BUNDLE_FILENAME = "bundle.conf"
@@ -80,15 +76,25 @@ def filter_widget(pack_widget, widget: str):
         return True
 
 ### Logic methods
-def parents(theme: str, parent: str, widget: str):
+def parents(theme: str, parent: str, widget: str, skip_widgets: bool):
     resultset = get_parents(theme, parent, widget)
     parents = resultset[0]
     parent_count = len(resultset[1])
+
+    # For theme-only list    
+    previous = ''
     
     for item in parents:
-        print(f"{item[0]}/widgets/{item[1]}")   # parent theme and widget
+        if skip_widgets and item[0] != previous:
+            print(f"- {item[0]}")
+            previous = item[0]
+        elif not skip_widgets:
+            print(f"{item[0]}/widgets/{item[1]}")   # parent theme and widget
     
-    print(f"Found {len(parents)} results over {parent_count} external dependencies")
+    if skip_widgets:
+        print(f"Found {parent_count} parents for theme {theme}")
+    else:
+        print(f"Found {len(parents)} results over {parent_count} external dependencies")
 
 def get_parents(theme: str, parent: str, widget: str):
     imports = get_external_imports(theme)
@@ -131,7 +137,7 @@ def get_internal_imports(theme: str):
 def is_external_resource(line: str):
     return line.startswith(UPPER_DIR_INDICATOR)
 
-def children(theme: str, widget: str):
+def children(theme: str, widget: str, skip_widgets: bool):
     resultset = []
     children = []
     child_count = 0
@@ -140,10 +146,20 @@ def children(theme: str, widget: str):
     children = resultset[0]
     child_count = len(resultset[1])
     
-    for item in children:
-        print(f"[{item[0]}] {item[1]}")   # parent theme and widget
+    # For theme-only list
+    previous = ''
     
-    print(f"Found {len(children)} results over {child_count} children")
+    for item in children:
+        if skip_widgets and item[0] != previous:
+            print(f"- {item[0]}")
+            previous = item[0]
+        elif not skip_widgets:
+            print(f"[{item[0]}] {item[1]}")   # parent theme and widget
+    
+    if skip_widgets:
+        print(f"Found {child_count} children for theme {theme}")
+    else:
+        print(f"Found {len(children)} results over {child_count} children")
 
 def get_children(theme: str, widget: str):
     resultset = []
@@ -241,6 +257,7 @@ def main():
 
     # optional arguments
     optargs.add_argument("-w", "--widget", type=str, help='Filter results to match <WIDGET>')
+    optargs.add_argument("-l", "--list", help='Show only theme names, skipping widgets', action='store_true')
 
     # pretty args
     parser.add_argument("-v", "--version", action='version', version='Azurra Utils, version 1.0',
@@ -248,10 +265,10 @@ def main():
     args = parser.parse_args()
     
     if args.parents:
-        parents(args.parents, EMPTY, args.widget)
+        parents(args.parents, EMPTY, args.widget, args.list)
 
     elif args.children:
-        children(args.children, args.widget)
+        children(args.children, args.widget, args.list)
 
     elif args.implementations:
         implementations(args.implementations)
