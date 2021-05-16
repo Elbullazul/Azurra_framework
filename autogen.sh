@@ -33,7 +33,7 @@ show_version() {
   echo "License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>" && exit
 }
 
-fail() { tput setaf 1 && echo 'ERROR: '$@ && exit 1; }
+fail() { tput setaf 1 && echo 'ERROR: '$@ && tput sgr 0 && exit 1; }
 warn() { tput setaf 220 && echo 'WARNING: '$@ && tput sgr 0; }
 hlight() { tput setaf 33 && echo $@ && tput sgr 0; }
 
